@@ -21,8 +21,7 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      console.log(res)
-      dispatch(addUser(res.data));
+      dispatch(addUser(res.data?.user));
       return navigate("/");
     } catch (error) {
       console.error("Error occurred while logging in:", error);
