@@ -8,6 +8,8 @@ import { BASE_URL } from '../utils/constants';
 const Login = () => {
   const [emailId, setEmailId] = useState("ankit@gmail.com");
   const [password, setPassword] = useState("Ankit@123");
+  const [error, setError] = useState("");
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,9 +23,10 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      dispatch(addUser(res.data?.user));
+      dispatch(addUser(res.data));
       return navigate("/");
     } catch (error) {
+      setError(error.response?.data);
       console.error("Error occurred while logging in:", error);
     }
   }
@@ -53,6 +56,7 @@ const Login = () => {
               />
             </fieldset>
           </div>
+          {error && <p className="text-error">{error}</p>}
           <div className="card-actions justify-center">
             <button
               className="btn bg-sky-600 border-sky-800 text-white hover:bg-sky-700 focus:ring-2 focus:ring-sky-400 px-5"

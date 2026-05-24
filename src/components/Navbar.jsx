@@ -8,22 +8,19 @@ const Navbar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(user);
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post(BASE_URL + "/logout", {
+      await axios.post(BASE_URL + "/logout", {}, {
         withCredentials: true
       });
-      console.log(res);
-      dispatch(removeUser({}))
-      navigate("/login")
+      dispatch(removeUser())
+      return navigate("/login")
     } catch (error) {
       console.error("Error occurred while logging out:", error);
     }
+  };
 
-
-  }
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
