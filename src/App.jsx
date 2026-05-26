@@ -1,10 +1,11 @@
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Body from "./components/Body";
+import Connections from "./components/Connections";
+import Feed from "./components/Feed";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import appStore from "./utils/appStore";
-import Feed from "./components/Feed";
 
 
 function App() {
@@ -18,10 +19,11 @@ function App() {
               <Route path="/" element={<Feed />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/connections" element={<Connections />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
         </BrowserRouter>
-        <h1 className="text-3xl font-bold">Hello World!</h1>
       </Provider>
 
     </>

@@ -1,7 +1,6 @@
 import React from 'react'
 
 const UserCard = ({ user }) => {
-    console.log("user card", user);
     const {
         firstName = "",
         lastName = "",
