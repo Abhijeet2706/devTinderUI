@@ -7,14 +7,14 @@ import { addConnections } from '../utils/connectionsSlice';
 const Connections = () => {
     const dispatch = useDispatch();
 
-    const connections = useSelector((store) => store.connections?.data)
+    const connections = useSelector((store) => store.connections)
     const fetchConnections = async () => {
         try {
             const res = await axios.get(BASE_URL + "/user/connections", {
                 withCredentials: true
             });
             console.log("Connections data", res);
-            dispatch(addConnections(res.data));
+            dispatch(addConnections(res.data?.data));
 
         } catch (error) {
             console.error("Error occurred while fetching connections:", error);
