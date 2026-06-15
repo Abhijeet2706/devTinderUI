@@ -10,14 +10,13 @@ const Feed = () => {
     const dispatch = useDispatch();
 
     const feed = useSelector((store) => store.feed);
-    console.log(feed);
     const getFeed = async () => {
         try {
             if (feed) return;
             const res = await axios.get(BASE_URL + "/feed", {
                 withCredentials: true
             });
-            dispatch(addFeed(res?.data))
+            dispatch(addFeed(res?.data?.data))
 
         } catch (error) {
             console.error("Error occurred while fetching feed:", error);
@@ -29,11 +28,17 @@ const Feed = () => {
     }, [])
 
 
-
+    if (feed?.length === 0) {
+        return (
+            <div className='flex justify-center my-10 text-xl font-semibold'>
+                No more users in feed
+            </div>
+        )
+    }
     return (
         feed &&
         <div className='flex justify-center my-10'>
-            <UserCard user={feed?.data[0]} />
+            <UserCard user={feed[0]} />
         </div>
 
 
